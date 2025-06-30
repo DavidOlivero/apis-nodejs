@@ -3,12 +3,15 @@ import passport from "passport";
 import { authenticaton } from "./core/authentication/auth.ts";
 import { UserController } from "./controlers/user.ts";
 import { DefaultUser } from "./domain/const/default-user.const.ts";
-import { userLogin } from "./entities/user/user-login.ts";
+import router from "./entities/router.ts";
 
 authenticaton(passport) // Establecer la estrategia de logeo
 export const app = express() // Instancia el objeto de express
 app.use(express.json()) // Middleware para parsear objetos
 const PORT = 3000
+
+// Router
+app.use('/pokeapi', router)
 
 // Registar usuario por defecto
 new UserController(DefaultUser).registerUser()
@@ -38,9 +41,6 @@ app.delete('/team/pokemons/:pokeid', (_req, res) => {
 app.put('/team', (_req, res) => {
   res.send('Hello, World!')
 })
-
-// Logear el usuario para general un JWT
-app.post('/login', userLogin)
 
 // El método listen mantiene el servido abierto para recibir y enviar peticiones
 app.listen(PORT, () => console.log('Server stated at http://localhost/3000'))
