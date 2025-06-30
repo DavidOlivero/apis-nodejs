@@ -9,7 +9,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "start:build": "tsc",
     "start:dev": "nodemon --exec tsx src/app.ts",
-    "start:test": "npx start:build && npx start:dev"
+    "start:test": "vitest"
   },
   "dependencies": {
     "@types/bcrypt": "^5.0.2",

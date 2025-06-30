@@ -1,14 +1,13 @@
-import { UsersRepository } from "../domain/const/users-repository.const";
-import { hashPassword, comparePassword } from "../core/authentication/crypto";
-import { UserInfo } from "../domain/types/user-database.type";
+import { UsersRepository } from "@/domain/const/users-repository.const";
+import { hashPassword, comparePassword } from "@/core/authentication/crypto";
+import { UserInfo } from "@/domain/types/user-database.type";
 import { v4 } from "uuid";
-import { UserErrorHandler } from "../entities/login/errors/user.error";
+import { UserErrorHandler } from "@/controlers/errors/user.error";
 
 export class UserController {
   private userId: string | undefined = undefined;
 
   constructor(private userInfo: UserInfo) {
-    console.log('Hola')
     this.evaluateUser()
   }
 
@@ -24,15 +23,15 @@ export class UserController {
     }
   }
 
-  public checkUserCredentials(): boolean {
+  public async checkUserCredentials(): Promise<boolean> {
     if (!this.userId) return false
     const user: UserInfo = UsersRepository[this.userId]
-    let resutl = false
-    comparePassword(this.userInfo.password, user.password, (err, sameSalt) => {
-      if (!err) resutl = sameSalt
-    })
+    const authenticationStatus = comparePassword(this.userInfo.password, user.password)
+    const [_error, response] = await UserErrorHandler.comprobateCredentials(authenticationStatus)
 
-    return resutl
+    let result = false;
+    if (response) result = response
+    return result
   }
 
   private evaluateUser(): void {
