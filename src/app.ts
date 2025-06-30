@@ -3,7 +3,7 @@ import passport from "passport";
 import { authenticaton } from "./core/authentication/auth.ts";
 import { UserController } from "./controlers/user.ts";
 import { DefaultUser } from "./domain/const/default-user.const.ts";
-import router from "./entities/router.ts";
+import authenticationRouting from "./entities/authentication/routes/auth.routes.ts";
 
 authenticaton(passport) // Establecer la estrategia de logeo
 export const app = express() // Instancia el objeto de express
@@ -11,7 +11,7 @@ app.use(express.json()) // Middleware para parsear objetos
 const PORT = 3000
 
 // Router
-app.use('/pokeapi', router)
+app.use('/auth', authenticationRouting)
 
 // Registar usuario por defecto
 new UserController(DefaultUser).registerUser()
@@ -43,5 +43,5 @@ app.put('/team', (_req, res) => {
 })
 
 // El método listen mantiene el servido abierto para recibir y enviar peticiones
-app.listen(PORT, () => console.log('Server stated at http://localhost/3000'))
+app.listen(PORT, () => console.log('Server stated at http://localhost:3000'))
 

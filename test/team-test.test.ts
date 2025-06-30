@@ -8,7 +8,7 @@ describe('Suite de test para las acciones de los equipos', () => {
   it('Should return the team of the given user', async () => {
     // Primero debemos logear al usuario para obtener el token
     await new UserController(DefaultUser).registerUser()
-    const loginResponse: Response = await request(app).post('/login').send(DefaultUser);
+    const loginResponse: Response = await request(app).post('/auth/login').send(DefaultUser);
 
     // Luego comprobamos si el JWT del usuario es válido
     const response: Response = await request(app).get('/team').set('Authorization', `JWT ${loginResponse.body.token}`);

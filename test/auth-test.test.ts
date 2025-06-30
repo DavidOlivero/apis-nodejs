@@ -14,10 +14,10 @@ describe('Suite de test para la authenticacion', () => {
   it('It should return 200 because the JWT is valid.', async () => {
     // Primero debemos logear al usuario para obtener el token
     await new UserController(DefaultUser).registerUser()
-    const loginResponse: Response = await request(app).post('pokeapi/auth/login').send(DefaultUser);
+    const loginResponse: Response = await request(app).post('/auth/login').send(DefaultUser);
 
     // Luego comprobamos si el JWT del usuario es válido
-    const response: Response = await request(app).get('pokeapi/team').set('Authorization', `JWT ${loginResponse.body.token}`);
+    const response: Response = await request(app).get('/team').set('Authorization', `JWT ${loginResponse.body.token}`);
     expect(response.status).equal(200)
   })
 })
