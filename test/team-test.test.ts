@@ -1,5 +1,5 @@
 import { app } from "@/app";
-import { UserController } from "@/controlers/user";
+import { UserController } from "@/useCases/user";
 import { DefaultUser } from "@/domain/const/default-user.const";
 import { describe, expect, it } from "vitest";
 import request, { Response } from "supertest";

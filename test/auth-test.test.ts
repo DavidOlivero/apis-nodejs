@@ -2,7 +2,7 @@ import { describe, it, expect } from "vitest";
 import request, { Response } from "supertest";
 import { app } from "../src/app.js";
 import { DefaultUser } from "@/domain/const/default-user.const.js";
-import { UserController } from "@/controlers/user.js";
+import { UserController } from "@/useCases/user.js";
 
 describe('Suite de test para la authenticacion', () => {
   it('It should return 401 because the user has not been authenticated.', async () => {

@@ -1,4 +1,4 @@
-import { UserController } from "@/controlers/user";
+import { UserController } from "@/useCases/user";
 import { LoginResponse } from "@/domain/types/login-response.type";
 import { UserInfo } from "@/domain/types/user-database.type";
 import { Request, Response } from "express";

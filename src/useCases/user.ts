@@ -2,7 +2,7 @@ import { UsersRepository } from "@/domain/const/users-repository.const";
 import { hashPassword, comparePassword } from "@/core/authentication/crypto";
 import { UserInfo } from "@/domain/types/user-database.type";
 import { v4 } from "uuid";
-import { UserErrorHandler } from "@/controlers/errors/user.error";
+import { UserErrorHandler } from "@/useCases/errors/user.error";
 
 export class UserController {
   private userId: string | undefined = undefined;

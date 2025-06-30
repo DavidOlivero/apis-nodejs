@@ -1,7 +1,7 @@
 import express from "express";
 import passport from "passport";
 import { authenticaton } from "./core/authentication/auth.ts";
-import { UserController } from "./controlers/user.ts";
+import { UserController } from "./useCases/user.ts";
 import { DefaultUser } from "./domain/const/default-user.const.ts";
 import authenticationRouting from "./entities/authentication/routes/auth.routes.ts";
 
